@@ -1,6 +1,7 @@
 import { ArrowRight, Mail } from "lucide-react";
 import { siteConfig } from "@/config/site";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "cn";
 
 export function Hero() {
   return (
@@ -38,23 +39,17 @@ export function Hero() {
           className="animate-fade-up flex flex-col gap-3 pt-2 sm:flex-row"
           style={{ animationDelay: "120ms" }}
         >
-          <Button
-            size="lg"
-            nativeButton={false}
-            render={<a href="#proyectos" />}
-          >
+          <a href="#proyectos" className={cn(buttonVariants({ size: "lg" }))}>
             Ver proyectos
             <ArrowRight />
-          </Button>
-          <Button
-            size="lg"
-            variant="outline"
-            nativeButton={false}
-            render={<a href="#contacto" />}
+          </a>
+          <a
+            href="#contacto"
+            className={cn(buttonVariants({ variant: "outline", size: "lg" }))}
           >
             <Mail />
             Contacto
-          </Button>
+          </a>
         </div>
       </div>
     </section>

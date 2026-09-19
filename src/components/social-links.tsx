@@ -1,6 +1,6 @@
 import { Mail } from "lucide-react";
 import { siteConfig } from "@/config/site";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { GitHubIcon, LinkedInIcon } from "@/components/icons";
 import { cn } from "cn";
 
@@ -13,24 +13,21 @@ const socialLinks = [
 export function SocialLinks({ className }: { className?: string }) {
   return (
     <div className={cn("flex items-center gap-1", className)}>
-      {socialLinks.map(({ label, href, icon: Icon }) => (
-        <Button
-          key={label}
-          variant="ghost"
-          size="icon"
-          aria-label={label}
-          nativeButton={false}
-          render={
-            <a
-              href={href}
-              target={href.startsWith("mailto:") ? undefined : "_blank"}
-              rel={href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
-            />
-          }
-        >
-          <Icon />
-        </Button>
-      ))}
+      {socialLinks.map(({ label, href, icon: Icon }) => {
+        const external = !href.startsWith("mailto:");
+        return (
+          <a
+            key={label}
+            href={href}
+            aria-label={label}
+            target={external ? "_blank" : undefined}
+            rel={external ? "noopener noreferrer" : undefined}
+            className={cn(buttonVariants({ variant: "ghost", size: "icon" }))}
+          >
+            <Icon />
+          </a>
+        );
+      })}
     </div>
   );
 }

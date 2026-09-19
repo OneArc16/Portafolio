@@ -10,7 +10,8 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "cn";
 
 export function ProjectCard({ project }: { project: Project }) {
   return (
@@ -34,20 +35,15 @@ export function ProjectCard({ project }: { project: Project }) {
       </CardContent>
       <CardFooter className="flex items-center justify-between gap-2">
         {project.liveUrl ? (
-          <Button
-            size="sm"
-            nativeButton={false}
-            render={
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-              />
-            }
+          <a
+            href={project.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={cn(buttonVariants({ size: "sm" }))}
           >
             Ver sitio
             <ArrowUpRight />
-          </Button>
+          </a>
         ) : (
           <span />
         )}

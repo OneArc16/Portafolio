@@ -1,6 +1,7 @@
 import { Mail } from "lucide-react";
 import { siteConfig } from "@/config/site";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "cn";
 import { GitHubIcon, LinkedInIcon } from "@/components/icons";
 import { Section } from "@/components/layout/section";
 
@@ -30,44 +31,31 @@ export function Contact() {
           </div>
 
           <div className="flex flex-col gap-3 sm:flex-row">
-            <Button
-              size="lg"
-              nativeButton={false}
-              render={<a href={`mailto:${siteConfig.email}`} />}
+            <a
+              href={`mailto:${siteConfig.email}`}
+              className={cn(buttonVariants({ size: "lg" }))}
             >
               <Mail />
               Enviar correo
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              nativeButton={false}
-              render={
-                <a
-                  href={siteConfig.links.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                />
-              }
+            </a>
+            <a
+              href={siteConfig.links.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn(buttonVariants({ variant: "outline", size: "lg" }))}
             >
               <LinkedInIcon />
               LinkedIn
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              nativeButton={false}
-              render={
-                <a
-                  href={siteConfig.links.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                />
-              }
+            </a>
+            <a
+              href={siteConfig.links.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn(buttonVariants({ variant: "outline", size: "lg" }))}
             >
               <GitHubIcon />
               GitHub
-            </Button>
+            </a>
           </div>
         </div>
       </div>
