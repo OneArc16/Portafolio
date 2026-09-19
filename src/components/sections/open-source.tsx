@@ -9,11 +9,13 @@ export async function OpenSource() {
 
   return (
     <Section id="open-source" title="Código abierto">
-      <div className="grid gap-4 sm:grid-cols-2">
+      <ul className="-mx-6 flex snap-x snap-mandatory scroll-px-6 gap-4 overflow-x-auto px-6 py-1 [scrollbar-width:none] sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 sm:py-0">
         {repos.map((repo) => (
-          <RepoCard key={repo.name} repo={repo} />
+          <li key={repo.name} className="w-[85%] shrink-0 snap-start sm:w-auto">
+            <RepoCard repo={repo} />
+          </li>
         ))}
-      </div>
+      </ul>
     </Section>
   );
 }

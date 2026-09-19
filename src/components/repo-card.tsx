@@ -14,7 +14,7 @@ export function RepoCard({ repo }: { repo: PinnedRepo }) {
       href={repo.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="group block rounded-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+      className="group block h-full rounded-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
     >
       <Card className="h-full transition-all duration-200 group-hover:ring-primary/50 group-hover:bg-card/80 group-hover:-translate-y-0.5">
         <CardHeader>
