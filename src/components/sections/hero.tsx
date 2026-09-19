@@ -55,7 +55,7 @@ export function Hero() {
             size="lg"
             variant="outline"
             nativeButton={false}
-            render={<a href={`mailto:${siteConfig.email}`} />}
+            render={<Link href="#contacto" />}
           >
             <Mail />
             Contacto

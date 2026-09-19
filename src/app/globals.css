@@ -165,13 +165,15 @@
 }
 
 /* Scroll-driven reveal. Browsers without animation-timeline get no
-   animation at all, since an unset timeline leaves duration at 0s. */
+   animation at all, since an unset timeline leaves duration at 0s.
+   The range must end within `entry`: a `cover` offset can be unreachable
+   for the last section on tall viewports, leaving it semi-transparent. */
 @utility reveal {
   @supports (animation-timeline: view()) {
     @media (prefers-reduced-motion: no-preference) {
       animation: fade-up linear both;
       animation-timeline: view();
-      animation-range: entry 0% cover 28%;
+      animation-range: entry 0% entry 60%;
     }
   }
 }
