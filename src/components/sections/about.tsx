@@ -1,7 +1,8 @@
+import { Section } from "@/components/layout/section";
+
 export function About() {
   return (
-    <section id="sobre-mi" className="mx-auto w-full max-w-2xl px-6 py-24">
-      <h2 className="text-sm font-medium text-muted-foreground">Sobre mí</h2>
+    <Section id="sobre-mi" title="Sobre mí">
       <div className="mt-4 space-y-4 text-lg leading-relaxed">
         <p>
           Llevo 5 años trabajando en una empresa del sector salud, donde
@@ -17,6 +18,6 @@ export function About() {
           entrego.
         </p>
       </div>
-    </section>
+    </Section>
   );
 }
