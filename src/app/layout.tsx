@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist } from "next/font/google";
 import { siteConfig } from "@/config/site";
 import { siteUrl } from "@/lib/site-url";
 import { SiteHeader } from "@/components/layout/site-header";
@@ -9,11 +9,6 @@ import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
   subsets: ["latin"],
 });
 
@@ -50,7 +45,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="es"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
         <ThemeProvider
@@ -59,8 +54,16 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           enableSystem
           disableTransitionOnChange
         >
+          <a
+            href="#contenido"
+            className="sr-only rounded-md bg-primary px-3 py-2 text-sm font-medium text-primary-foreground focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60]"
+          >
+            Saltar al contenido
+          </a>
           <SiteHeader />
-          <main className="flex flex-1 flex-col">{children}</main>
+          <main id="contenido" className="flex flex-1 flex-col">
+            {children}
+          </main>
           <SiteFooter />
         </ThemeProvider>
       </body>

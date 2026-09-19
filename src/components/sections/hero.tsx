@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { ArrowRight, Mail } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import { Button } from "@/components/ui/button";
@@ -24,29 +23,25 @@ export function Hero() {
           {siteConfig.availability}
         </span>
 
-        <h1
-          className="animate-fade-up text-4xl font-semibold tracking-tight text-balance sm:text-6xl lg:text-7xl"
-          style={{ animationDelay: "60ms" }}
-        >
+        {/* Name and tagline are the LCP candidates; fading them in delayed
+            LCP by ~800ms, so only the badge and buttons animate. */}
+        <h1 className="text-4xl font-semibold tracking-tight text-balance sm:text-6xl lg:text-7xl">
           {siteConfig.name}
         </h1>
 
-        <p
-          className="animate-fade-up text-lg text-muted-foreground text-balance sm:text-xl"
-          style={{ animationDelay: "120ms" }}
-        >
+        <p className="text-lg text-muted-foreground text-balance sm:text-xl">
           <span className="text-foreground">{siteConfig.role}.</span>{" "}
           {siteConfig.tagline}
         </p>
 
         <div
           className="animate-fade-up flex flex-col gap-3 pt-2 sm:flex-row"
-          style={{ animationDelay: "180ms" }}
+          style={{ animationDelay: "120ms" }}
         >
           <Button
             size="lg"
             nativeButton={false}
-            render={<Link href="#proyectos" />}
+            render={<a href="#proyectos" />}
           >
             Ver proyectos
             <ArrowRight />
@@ -55,7 +50,7 @@ export function Hero() {
             size="lg"
             variant="outline"
             nativeButton={false}
-            render={<Link href="#contacto" />}
+            render={<a href="#contacto" />}
           >
             <Mail />
             Contacto
