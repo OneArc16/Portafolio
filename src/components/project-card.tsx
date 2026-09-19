@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button";
 
 export function ProjectCard({ project }: { project: Project }) {
   return (
-    <Card>
+    <Card className="transition-all duration-200 hover:ring-primary/40">
       <CardHeader>
         <CardTitle>{project.title}</CardTitle>
         <CardDescription>{project.role}</CardDescription>

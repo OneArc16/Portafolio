@@ -37,7 +37,7 @@ function ResumeGroup({
 export function Resume() {
   return (
     <Section id="experiencia" title="Experiencia y educación">
-      <div className="mt-6 space-y-8">
+      <div className="space-y-8">
         <ResumeGroup heading="Experiencia" entries={experience} />
         <ResumeGroup heading="Educación" entries={education} />
       </div>

@@ -84,19 +84,19 @@
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
+  --background: oklch(0.145 0.008 265);
   --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
+  --card: oklch(0.194 0.009 265);
   --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
+  --popover: oklch(0.194 0.009 265);
   --popover-foreground: oklch(0.985 0 0);
   --primary: oklch(0.546 0.245 262.881);
   --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.269 0 0);
+  --secondary: oklch(0.269 0.01 265);
   --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
+  --muted: oklch(0.269 0.01 265);
+  --muted-foreground: oklch(0.715 0.015 265);
+  --accent: oklch(0.269 0.01 265);
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(1 0 0 / 10%);
@@ -117,6 +117,14 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+:root {
+  --grid-line: oklch(0.145 0 0 / 6%);
+}
+
+.dark {
+  --grid-line: oklch(1 0 0 / 7%);
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -131,5 +139,54 @@
     html {
       scroll-behavior: smooth;
     }
+  }
+}
+
+@utility bg-grid {
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 4rem 4rem;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@utility animate-fade-up {
+  animation: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+/* Scroll-driven reveal. Browsers without animation-timeline get no
+   animation at all, since an unset timeline leaves duration at 0s. */
+@utility reveal {
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      animation: fade-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 28%;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up {
+    animation: none;
+  }
+}
+
+/* Entrance animations start at opacity 0, which would print blank pages. */
+@media print {
+  .animate-fade-up,
+  .reveal {
+    animation: none;
+    opacity: 1;
   }
 }

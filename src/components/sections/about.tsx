@@ -3,7 +3,7 @@ import { Section } from "@/components/layout/section";
 export function About() {
   return (
     <Section id="sobre-mi" title="Sobre mí">
-      <div className="mt-4 space-y-4 text-lg leading-relaxed">
+      <div className="space-y-4 text-lg leading-relaxed text-muted-foreground">
         <p>
           Llevo 5 años trabajando en una empresa del sector salud, donde
           empecé como técnico y con el tiempo me fui enfocando en

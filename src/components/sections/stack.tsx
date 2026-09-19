@@ -5,7 +5,7 @@ import { Section } from "@/components/layout/section";
 export function Stack() {
   return (
     <Section id="stack" title="Stack y herramientas">
-      <dl className="mt-6 grid gap-6 sm:grid-cols-2">
+      <dl className="grid gap-6 sm:grid-cols-2">
         {stack.map(({ category, items }) => (
           <div key={category}>
             <dt className="text-sm font-medium">{category}</dt>

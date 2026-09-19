@@ -9,7 +9,7 @@ export async function OpenSource() {
 
   return (
     <Section id="open-source" title="Código abierto">
-      <div className="mt-6 grid gap-4 sm:grid-cols-2">
+      <div className="grid gap-4 sm:grid-cols-2">
         {repos.map((repo) => (
           <RepoCard key={repo.name} repo={repo} />
         ))}
