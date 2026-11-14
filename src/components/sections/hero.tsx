@@ -35,7 +35,7 @@ export function Hero() {
           </span>
 
           <div className="space-y-3">
-            <p className="font-mono text-sm text-primary">Hola, soy</p>
+            <p className="font-mono text-sm text-primary dark:text-[color-mix(in_oklch,var(--primary),white_35%)]">Hola, soy</p>
             {/* Name and tagline are the LCP candidates; fading them in delayed
                 LCP by ~800ms, so they paint immediately. The shimmer only
                 moves the gradient, it never hides the text. */}

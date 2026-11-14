@@ -14,7 +14,7 @@ export function Section({
       id={id}
       className="reveal mx-auto w-full max-w-4xl scroll-mt-20 px-6 py-20 sm:py-28"
     >
-      <p aria-hidden className="font-mono text-sm text-primary">
+      <p aria-hidden className="font-mono text-sm text-primary dark:text-[color-mix(in_oklch,var(--primary),white_35%)]">
         {`// ${id}`}
       </p>
       <div className="mt-2 flex items-center gap-4">

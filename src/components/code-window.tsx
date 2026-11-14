@@ -72,7 +72,7 @@ export function CodeWindow() {
           <span className="size-3 rounded-full bg-red-400/80" />
           <span className="size-3 rounded-full bg-amber-400/80" />
           <span className="size-3 rounded-full bg-emerald-400/80" />
-          <span className="ml-3 rounded-md bg-muted px-2 py-0.5 font-mono text-xs text-muted-foreground">
+          <span className="ml-3 rounded-md bg-muted px-2 py-0.5 font-mono text-xs text-foreground/80">
             developer.ts
           </span>
         </div>
