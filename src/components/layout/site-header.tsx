@@ -18,9 +18,16 @@ export function SiteHeader() {
         <Link
           href="/"
           prefetch={false}
-          className="text-sm font-semibold tracking-tight"
+          className="font-mono text-sm font-semibold tracking-tight"
         >
+          <span aria-hidden className="text-primary">
+            &lt;
+          </span>
           {siteConfig.name}
+          <span aria-hidden className="text-primary">
+            {" "}
+            /&gt;
+          </span>
         </Link>
 
         <nav className="hidden items-center gap-1 sm:flex">
@@ -28,7 +35,7 @@ export function SiteHeader() {
             <a
               key={href}
               href={href}
-              className="rounded-md px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+              className="relative rounded-md px-3 py-1.5 text-sm text-muted-foreground transition-colors after:absolute after:inset-x-3 after:bottom-0.5 after:h-px after:origin-left after:scale-x-0 after:bg-primary after:transition-transform after:duration-300 hover:text-foreground hover:after:scale-x-100"
             >
               {label}
             </a>
@@ -40,6 +47,10 @@ export function SiteHeader() {
           <ThemeToggle />
         </div>
       </div>
+      <span
+        aria-hidden
+        className="scroll-progress absolute inset-x-0 -bottom-px h-0.5 bg-linear-to-r from-primary via-sky-400 to-violet-500"
+      />
     </header>
   );
 }

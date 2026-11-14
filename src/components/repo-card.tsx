@@ -7,6 +7,7 @@ import {
   CardDescription,
   CardContent,
 } from "@/components/ui/card";
+import { Spotlight } from "@/components/spotlight";
 
 export function RepoCard({ repo }: { repo: PinnedRepo }) {
   return (
@@ -16,29 +17,31 @@ export function RepoCard({ repo }: { repo: PinnedRepo }) {
       rel="noopener noreferrer"
       className="group block h-full rounded-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
     >
-      <Card className="h-full transition-all duration-200 group-hover:ring-primary/50 group-hover:bg-card/80 group-hover:-translate-y-0.5">
-        <CardHeader>
-          <CardTitle>{repo.name}</CardTitle>
-          {repo.description && (
-            <CardDescription>{repo.description}</CardDescription>
-          )}
-        </CardHeader>
-        <CardContent className="flex items-center gap-3 text-xs text-muted-foreground">
-          {repo.primaryLanguage && (
+      <Spotlight className="h-full transition-transform duration-300 group-hover:-translate-y-1">
+        <Card className="h-full transition-all duration-300 group-hover:shadow-xl group-hover:shadow-primary/10 group-hover:ring-primary/50">
+          <CardHeader>
+            <CardTitle>{repo.name}</CardTitle>
+            {repo.description && (
+              <CardDescription>{repo.description}</CardDescription>
+            )}
+          </CardHeader>
+          <CardContent className="flex items-center gap-3 text-xs text-muted-foreground">
+            {repo.primaryLanguage && (
+              <span className="inline-flex items-center gap-1">
+                <span
+                  className="size-2 rounded-full"
+                  style={{ backgroundColor: repo.primaryLanguage.color }}
+                />
+                {repo.primaryLanguage.name}
+              </span>
+            )}
             <span className="inline-flex items-center gap-1">
-              <span
-                className="size-2 rounded-full"
-                style={{ backgroundColor: repo.primaryLanguage.color }}
-              />
-              {repo.primaryLanguage.name}
+              <Star className="size-3 transition-colors group-hover:fill-amber-400 group-hover:text-amber-400" />
+              {repo.stargazerCount}
             </span>
-          )}
-          <span className="inline-flex items-center gap-1">
-            <Star className="size-3" />
-            {repo.stargazerCount}
-          </span>
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
+      </Spotlight>
     </a>
   );
 }
