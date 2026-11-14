@@ -107,6 +107,66 @@ test("con teclado se puede saltar el header e ir a proyectos", async ({
   await expect(page.locator("#proyectos")).toBeInViewport({ timeout: 15_000 });
 });
 
+test.describe("paleta de comandos", () => {
+  test("Ctrl+K abre la paleta y lleva a la sección elegida", async ({
+    page,
+  }) => {
+    await page.goto("/");
+    const trigger = page.getByRole("button", { name: /Buscar/ });
+    await waitForHydration(trigger);
+
+    await page.keyboard.press("Control+k");
+    const palette = page.getByRole("dialog", { name: "Paleta de comandos" });
+    await expect(palette).toBeVisible();
+    await expect(
+      palette.getByRole("combobox", { name: "Buscar comandos" }),
+    ).toBeFocused();
+
+    await page.keyboard.type("contacto");
+    await page.keyboard.press("Enter");
+    await expect(palette).toBeHidden();
+    await expect(page).toHaveURL(/#contacto$/);
+    await expect(page.locator("#contacto")).toBeInViewport({ timeout: 15_000 });
+  });
+
+  test("Escape cierra la paleta y devuelve el foco al botón", async ({
+    page,
+  }) => {
+    await page.goto("/");
+    const trigger = page.getByRole("button", { name: /Buscar/ });
+    await waitForHydration(trigger);
+
+    await trigger.click();
+    const palette = page.getByRole("dialog", { name: "Paleta de comandos" });
+    await expect(palette).toBeVisible();
+    await page.keyboard.press("Escape");
+    await expect(palette).toBeHidden();
+    await expect(trigger).toBeFocused();
+  });
+
+  test("filtra sin resultados y ejecuta acciones como cambiar el tema", async ({
+    page,
+  }) => {
+    await page.goto("/");
+    const html = page.locator("html");
+    const trigger = page.getByRole("button", { name: /Buscar/ });
+    await waitForHydration(trigger);
+    await expect(html).toHaveClass(/\bdark\b/);
+
+    await trigger.click();
+    const input = page.getByRole("combobox", { name: "Buscar comandos" });
+    await input.fill("zzzz");
+    await expect(page.getByText("Sin resultados")).toBeVisible();
+
+    await input.fill("tema");
+    await page.getByRole("option", { name: /Cambiar tema/ }).click();
+    await expect(
+      page.getByRole("dialog", { name: "Paleta de comandos" }),
+    ).toBeHidden();
+    await expect(html).not.toHaveClass(/\bdark\b/);
+  });
+});
+
 test("la página no se desborda horizontalmente", async ({ page }) => {
   await page.goto("/");
   const overflow = await page.evaluate(

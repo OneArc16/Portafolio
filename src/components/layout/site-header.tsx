@@ -2,6 +2,7 @@ import Link from "next/link";
 import { siteConfig } from "@/config/site";
 import { SocialLinks } from "@/components/social-links";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { CommandPalette } from "@/components/command-palette";
 
 const navLinks = [
   { label: "Proyectos", href: "#proyectos" },
@@ -43,6 +44,7 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-1">
+          <CommandPalette />
           <SocialLinks />
           <ThemeToggle />
         </div>
